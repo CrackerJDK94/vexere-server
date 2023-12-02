@@ -15,7 +15,7 @@ const options = {
   // version: { admin: true, app: "1.0.0" },
   rootPath: "/",
   branding: {
-    companyName: "Eggs Gold",
+    companyName: "Admin Vexere",
     theme: {
       colors: { primary100: "#4D70EB" },
     },
