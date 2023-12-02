@@ -25,7 +25,7 @@ const Dashboard = () => {
           opacity={[0.2, 0.4, 1]}
           animate
         >
-          <Illustration variant="Moon" />
+          <Illustration variant="Planet" />
         </Box>
         <Box
           bg="grey100"
@@ -35,9 +35,9 @@ const Dashboard = () => {
           dis
         >
           <Text textAlign="center" color="white">
-            <H1>Welcome on Board!</H1>
+            <H1>Welcome To Admin Dashboard!</H1>
             <H4 opacity={0.9}>
-              This is the admin page for the admin of Eggs Gold
+              This is the admin page for the admin of Vexere
             </H4>
           </Text>
         </Box>
