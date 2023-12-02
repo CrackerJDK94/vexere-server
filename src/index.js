@@ -11,11 +11,10 @@ const cors = require("cors");
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-// const { startCrons } = require("./utils/cron/cron");
 
 const DEFAULT_ADMIN = {
   email: "admin@email.com",
-  password: "admin",
+  password: "lIAZCxhgGKmFxRF",
 };
 
 const authenticate = async (email, password) => {
