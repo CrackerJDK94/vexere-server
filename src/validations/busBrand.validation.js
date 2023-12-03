@@ -1,62 +1,62 @@
 const Joi = require('joi');
 const { objectId } = require('./custom.validation');
 
-const createOffice = {
+const createBusBrand = {
   body: Joi.object().keys({
-    busBrand: Joi.string().required().custom(objectId),
     name: Joi.string().required(),
-    address: Joi.string().required(),
-    provinceOrCity: Joi.string().required(),
-    district: Joi.string().required(),
-    images: Joi.array().items(Joi.string()).default([]),
+    account: Joi.string().required().custom(objectId),
+    email: Joi.string().required().email(),
+    logo: Joi.string().required(),
     phone: Joi.number().required(),
-    location: Joi.array().items(Joi.number().min(0)).length(2).required(),
   }),
 };
 
-const getOffices = {
+const getBusBrands = {
   query: Joi.object().keys({
     name: Joi.string(),
+    account: Joi.string().custom(objectId),
+    email: Joi.string().email(),
+    logo: Joi.string(),
+    phone: Joi.number(),
+    isActive: Joi.boolean(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
   }),
 };
 
-const getOffice = {
+const getBusBrand = {
   params: Joi.object().keys({
-    officeId: Joi.string().custom(objectId),
+    busBrandId: Joi.string().custom(objectId),
   }),
 };
 
-const updateOffice = {
+const updateBusBrand = {
   params: Joi.object().keys({
-    officeId: Joi.string().required().custom(objectId),
+    busBrandId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
-      busBrand: Joi.string().custom(objectId),
       name: Joi.string(),
-      address: Joi.string(),
-      provinceOrCity: Joi.string(),
-      district: Joi.string(),
-      images: Joi.array().items(Joi.string()),
+      account: Joi.string().custom(objectId),
+      email: Joi.string().email(),
+      logo: Joi.string(),
       phone: Joi.number(),
-      location: Joi.array().items(Joi.number().min(0)).length(2),
+      isActive: Joi.boolean(),
     })
     .min(1),
 };
 
-const deleteOffice = {
+const deleteBusBrand = {
   params: Joi.object().keys({
-    officeId: Joi.string().custom(objectId),
+    busBrandId: Joi.string().custom(objectId),
   }),
 };
 
 module.exports = {
-  createOffice,
-  getOffices,
-  getOffice,
-  updateOffice,
-  deleteOffice,
+  createBusBrand,
+  getBusBrands,
+  getBusBrand,
+  updateBusBrand,
+  deleteBusBrand,
 };

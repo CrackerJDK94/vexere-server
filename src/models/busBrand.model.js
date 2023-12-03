@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
-const bcrypt = require('bcryptjs');
-const { toJSON, paginate } = require('./plugins');
-const { roles } = require('../config/roles');
+const mongoose = require("mongoose");
+const validator = require("validator");
+const bcrypt = require("bcryptjs");
+const { toJSON, paginate } = require("./plugins");
+const { roles } = require("../config/roles");
 
 const busBrandSchema = mongoose.Schema(
   {
@@ -10,6 +10,12 @@ const busBrandSchema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
+    },
+    account: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+      required: true,
     },
     email: {
       type: String,
@@ -19,7 +25,7 @@ const busBrandSchema = mongoose.Schema(
       lowercase: true,
       validate(value) {
         if (!validator.isEmail(value)) {
-          throw new Error('Invalid email');
+          throw new Error("Invalid email");
         }
       },
     },
@@ -33,17 +39,9 @@ const busBrandSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    password: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 8,
-      validate(value) {
-        if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
-          throw new Error('Password must contain at least one letter and one number');
-        }
-      },
-      private: true, // used by the toJSON plugin
+    isActive: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -51,9 +49,9 @@ const busBrandSchema = mongoose.Schema(
   }
 );
 
-busBrandSchema.pre('save', async function (next) {
+busBrandSchema.pre("save", async function (next) {
   const busBrand = this;
-  if (busBrand.isModified('password')) {
+  if (busBrand.isModified("password")) {
     busBrand.password = await bcrypt.hash(busBrand.password, 8);
   }
   next();
@@ -64,6 +62,6 @@ busBrandSchema.plugin(toJSON);
 /**
  * @typedef BusBrand
  */
-const BusBrand = mongoose.model('BusBrand', busBrandSchema);
+const BusBrand = mongoose.model("BusBrand", busBrandSchema);
 
 module.exports = BusBrand;

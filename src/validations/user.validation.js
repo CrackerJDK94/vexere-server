@@ -1,24 +1,26 @@
-const Joi = require("joi");
-const { password, objectId } = require("./custom.validation");
+const Joi = require('joi');
+const { objectId } = require('./custom.validation');
 
 const createUser = {
   body: Joi.object().keys({
-    walletAddress: Joi.string().required(),
-    role: Joi.string().required().valid("user", "admin"),
-    stamina: Joi.number().integer(),
-    name: Joi.string(),
-    language: Joi.string(),
-    soundBackgound: Joi.boolean(),
-    soundEffect: Joi.boolean(),
-    newPlayer: Joi.boolean(),
+    account: Joi.string().required(),
+    _name: Joi.string().required(),
+    _email: Joi.string().required().email(),
+    phone: Joi.number().required(),
+    password: Joi.string().required().min(8).regex(/^(?=.*[a-zA-Z])(?=.*\d)/)
+      .message('Password must contain at least one letter and one number'),
+    role: Joi.string().valid('user', 'admin'),
   }),
 };
 
 const getUsers = {
   query: Joi.object().keys({
-    name: Joi.string(),
-    role: Joi.string(),
-    walletAddress: Joi.string(),
+    account: Joi.string(),
+    _name: Joi.string(),
+    _email: Joi.string().email(),
+    phone: Joi.number(),
+    role: Joi.string().valid('user', 'admin'),
+    isEmailVerified: Joi.boolean(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
@@ -31,20 +33,20 @@ const getUser = {
   }),
 };
 
-const checkUserAlreadyExist = {
-  params: Joi.object().keys({
-    walletAddress: Joi.string(),
-  }),
-};
-
 const updateUser = {
+  params: Joi.object().keys({
+    userId: Joi.required().custom(objectId),
+  }),
   body: Joi.object()
     .keys({
-      name: Joi.string(),
-      language: Joi.string(),
-      soundBackgound: Joi.boolean(),
-      soundEffect: Joi.boolean(),
-      newPlayer: Joi.boolean(),
+      account: Joi.string(),
+      _name: Joi.string(),
+      _email: Joi.string().email(),
+      phone: Joi.number(),
+      password: Joi.string().min(8).regex(/^(?=.*[a-zA-Z])(?=.*\d)/)
+        .message('Password must contain at least one letter and one number'),
+      role: Joi.string().valid('user', 'admin'),
+      isEmailVerified: Joi.boolean(),
     })
     .min(1),
 };
@@ -55,26 +57,10 @@ const deleteUser = {
   }),
 };
 
-const getSignedUrl = {
-  query: Joi.object().keys({
-    fileName: Joi.string().required(),
-    fileType: Joi.string().required(),
-  }),
-};
-
-const changeAvatar = {
-  body: Joi.object().keys({
-    fileName: Joi.string().required(),
-  }),
-};
-
 module.exports = {
   createUser,
   getUsers,
   getUser,
   updateUser,
   deleteUser,
-  checkUserAlreadyExist,
-  getSignedUrl,
-  changeAvatar,
 };
