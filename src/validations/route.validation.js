@@ -6,12 +6,20 @@ const createRoute = {
     busBrand: Joi.string().required().custom(objectId),
     startingPoint: Joi.string().required(),
     endingPoint: Joi.string().required(),
-    schedule: Joi.array().items(Joi.object()), // Adjust the schema for schedule based on your actual requirements
+    pickupPointList: Joi.array().items(
+      Joi.object().keys({
+        pickupPoint: Joi.string().required(),
+        price: Joi.number().required(),
+      })
+    ),
+    mainSchedule: Joi.array().items(Joi.object()),
+    subSchedule: Joi.array().items(Joi.object()),
   }),
 };
 
 const getRoutes = {
   query: Joi.object().keys({
+    busBrand: Joi.string().custom(objectId),
     startingPoint: Joi.string(),
     endingPoint: Joi.string(),
     sortBy: Joi.string(),
@@ -28,14 +36,21 @@ const getRoute = {
 
 const updateRoute = {
   params: Joi.object().keys({
-    routeId: Joi.string().required().custom(objectId),
+    routeId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
       busBrand: Joi.string().custom(objectId),
       startingPoint: Joi.string(),
       endingPoint: Joi.string(),
-      schedule: Joi.array().items(Joi.object()), // Adjust the schema for schedule based on your actual requirements
+      pickupPointList: Joi.array().items(
+        Joi.object().keys({
+          pickupPoint: Joi.string().required(),
+          price: Joi.number().required(),
+        })
+      ),
+      mainSchedule: Joi.array().items(Joi.object()),
+      subSchedule: Joi.array().items(Joi.object()),
     })
     .min(1),
 };

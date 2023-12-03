@@ -17,9 +17,19 @@ const routeResource = {
         isVisible: { edit: false, show: true, list: false, filter: false },
       },
     },
+    pickupPointList: {
+      isArray: true,
+      type: "mixed",
+    },
+    "pickupPointList.pickupPoint": {
+      type: "mixed",
+    },
+    "pickupPointList.price": {
+      type: "string",
+    },
     sort: {
-      sortBy: 'createdAt',
-      direction: 'desc',
+      sortBy: "createdAt",
+      direction: "desc",
     },
   },
 };

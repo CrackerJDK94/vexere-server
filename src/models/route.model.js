@@ -1,27 +1,44 @@
-const mongoose = require('mongoose');
-const { toJSON } = require('./plugins');
+const mongoose = require("mongoose");
+const { toJSON } = require("./plugins");
 
 const routeSchema = mongoose.Schema(
   {
     busBrand: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: 'BusBrand',
+      ref: "BusBrand",
       required: true,
     },
     startingPoint: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
     endingPoint: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
-    schedule: {
+    pickupPointList: [
+      {
+        pickupPoint: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
+    mainSchedule: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
+    subSchedule: {
+      type: Array,
+      default: [],
+    },
   },
   {
     timestamps: true,
@@ -34,6 +51,6 @@ routeSchema.plugin(toJSON);
 /**
  * @typedef Route
  */
-const Route = mongoose.model('Route', routeSchema);
+const Route = mongoose.model("Route", routeSchema);
 
 module.exports = Route;
