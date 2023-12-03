@@ -2,17 +2,17 @@ const {
   componentLoader,
   AdminComponents,
 } = require("../loader/componentLoader");
+const locale = require("./locale.option");
 
 const userResource = require("../resources/user.resource");
 const policyResource = require("../resources/policy.resource");
 const routeResource = require("../resources/route.resource");
 const officeResource = require("../resources/office.resouce");
 const busBrandResource = require("../resources/busBrand.resource");
-const busTypeResource = require("../resources/busType.resource");
+const vihicleTransportresource = require("../resources/vihicleTransport.resource");
 
 const options = {
   componentLoader,
-  // version: { admin: true, app: "1.0.0" },
   rootPath: "/",
   branding: {
     companyName: "Admin Vexere",
@@ -26,13 +26,14 @@ const options = {
   dashboard: {
     component: AdminComponents.Dashboard,
   },
+  locale,
   resources: [
     userResource,
     policyResource,
     routeResource,
     officeResource,
     busBrandResource,
-    busTypeResource,
+    vihicleTransportresource,
   ],
 };
 

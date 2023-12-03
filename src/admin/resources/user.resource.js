@@ -13,33 +13,16 @@ const userResource = {
       _id: {
         isVisible: { edit: false, show: true, list: false, filter: false },
       },
-      // walletAddress: {
-      //   isTitle: true,
-      // },
-      role: {
-        isVisible: false,
+      password: {
+        isVisible: { edit: false, show: false, list: false, filter: false },
       },
-      // avatar: {
-      //   components: {
-      //     list: AdminComponents.Image,
-      //     show: AdminComponents.Image,
-      //   },
-      // },
+      updatedAt: {
+        isVisible: { edit: false, show: true, list: false, filter: false },
+      },
+      createdAt: {
+        isVisible: { edit: false, show: true, list: false, filter: false },
+      },
     },
-    // actions: {
-    //   delete: {
-    //     after: async (response) => {
-    //       await deleteDataOfUsers([response.record.params._id.toString()]);
-    //       return response;
-    //     },
-    //   },
-    //   bulkDelete: {
-    //     after: async (response) => {
-    //       await deleteDataOfUsers(response.records.map(r => r.id))
-    //       return response;
-    //     },
-    //   },
-    // },
     sort: {
       sortBy: 'createdAt',
       direction: 'desc',

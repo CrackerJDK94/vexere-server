@@ -1,7 +1,7 @@
-const { Route } = require("../../models");
+const { VihicleTransport } = require("../../models");
 
-const routeResource = {
-  resource: Route,
+const vihicleTransportResource = {
+  resource: VihicleTransport,
   options: {
     navigation: {
       name: null,
@@ -23,4 +23,4 @@ const routeResource = {
     },
   },
 };
-module.exports = routeResource;
+module.exports = vihicleTransportResource;

@@ -5,7 +5,6 @@ const busBrandResource = {
   options: {
     navigation: {
       name: null,
-    //   icon: "busBrand",
     },
     properties: {
       _id: {
@@ -18,4 +17,5 @@ const busBrandResource = {
     },
   },
 };
+
 module.exports = busBrandResource;
