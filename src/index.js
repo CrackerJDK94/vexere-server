@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongo");
 
 const DEFAULT_ADMIN = {
   email: "admin@email.com",
-  password: "lIAZCxhgGKmFxRF",
+  password: "admin",
 };
 
 const authenticate = async (email, password) => {
