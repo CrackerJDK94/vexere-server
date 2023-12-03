@@ -14,7 +14,7 @@ const userResource = {
         isVisible: { edit: false, show: true, list: false, filter: false },
       },
       password: {
-        isVisible: { edit: false, show: false, list: false, filter: false },
+        isVisible: { edit: true, show: false, list: false, filter: false },
       },
       updatedAt: {
         isVisible: { edit: false, show: true, list: false, filter: false },
