@@ -5,6 +5,7 @@ const {
 const locale = require("./locale.option");
 
 const userResource = require("../resources/user.resource");
+// const companyResource = require("../resources/company.resource");
 const policyResource = require("../resources/policy.resource");
 const routeResource = require("../resources/route.resource");
 const officeResource = require("../resources/office.resouce");
@@ -29,6 +30,7 @@ const options = {
   locale,
   resources: [
     userResource,
+    // companyResource,
     policyResource,
     routeResource,
     officeResource,

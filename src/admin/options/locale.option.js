@@ -2,19 +2,32 @@ const locale = {
   language: "vi",
   translations: {
     labels: {
-      User: "Người Dùng",
+      User: "Tài khoản điều hành",
       Policy: "Chính Sách",
       Route: "Tuyến",
       Office: "Văn Phòng",
       BusBrand: "Nhà Xe",
       VihicleTransport: "Phương Tiện",
+
     },
     resources: {
+      // User: {
+      //   properties: {
+      //     account: "Tên đăng nhập",
+      //     _name: "Họ Và Tên",
+      //     _phone: "Số điện thoại",
+
+      //     password: "Mật khẩu",
+      //     role: "Quyền người dùng",
+      //     isEmailVerified: "Tình trạng xác thực",
+      //     updatedAt: "Ngày cập nhật",
+      //     createdAt: "Ngày tạo",
+      //   },
+      // },
       User: {
         properties: {
-          account: "Tên đăng nhập",
-          _name: "Họ Và Tên",
-          _phone: "Số điện thoại",
+          _name: "Tên nhà xe",
+          _phone: "Hotline",
           password: "Mật khẩu",
           role: "Quyền người dùng",
           isEmailVerified: "Tình trạng xác thực",
